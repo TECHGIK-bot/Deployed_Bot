@@ -53,22 +53,30 @@ def Container():
     return Ball_numbers
 
 def Hot_Numbers():
-    Hot_Balls = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]')
-    
-    First_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[1]/span').text
-    Second_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[2]/span').text
-    Third_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[3]/span').text
-    Fourth_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[4]/span').text
-
-    # Convert strings to integers
     try:
-        Balls = [int(First_Hot_Ball), int(Second_Hot_Ball), int(Third_Hot_Ball), int(Fourth_Hot_Ball)]
-        print(Balls)
-    except ValueError:
-        print("One or more hot balls are not valid integers")
-        Balls = []
 
-    return Balls
+        Hot_Balls = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]"))
+    )
+        print("Element found:", element.text)
+
+        First_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[1]/span').text
+        Second_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[2]/span').text
+        Third_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[3]/span').text
+        Fourth_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[4]/span').text
+
+        # Convert strings to integers
+        try:
+            Balls = [int(First_Hot_Ball), int(Second_Hot_Ball), int(Third_Hot_Ball), int(Fourth_Hot_Ball)]
+            print(Balls)
+        except ValueError:
+            print("One or more hot balls are not valid integers")
+            Balls = []
+
+        return Balls
+
+    except Exception as e:
+        print(f"An error occured: {e}")
 
 def send_telegram_message(message):
     """Sends a message to your Telegram bot."""
