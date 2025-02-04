@@ -15,12 +15,15 @@ CHAT_ID = "6260151149"
 # Define the path to chromedriver
 CHROMEDRIVER_PATH = "chromedriver" # Adjust if needed
 
-# Create a Service object for ChromeDriver
-chrome_service = Service(ChromeDriverManager().install())
+# Manually specify the ChromeDriver version
+chrome_service = Service(ChromeDriverManager(version="114.0.5735.90").install())
 
 # Set Chrome options (optional)
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless")  # Run in headless mode
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
 # Initialize the Chrome WebDriver
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
