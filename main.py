@@ -16,7 +16,7 @@ CHAT_ID = "6260151149"
 
 # Set up Selenium
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-http2")  # Disable HTTP/2 protocol
 
 chrome_options.add_argument("--no-sandbox")
