@@ -11,7 +11,7 @@ import requests
 
 
 
-url = "https://casino.bet9ja.com"
+url = "https://google.com"
 response = requests.get(url, timeout=10)
 print(f"Status Code: {response.status_code}")
 print(f"Response Headers: {response.headers}")
