@@ -16,7 +16,7 @@ CHAT_ID = "6260151149"
 CHROMEDRIVER_PATH = "chromedriver" # Adjust if needed
 
 # Manually specify the ChromeDriver version
-chrome_service = Service(ChromeDriverManager(version="114.0.5735.90").install())
+chrome_service = Service(ChromeDriverManager(version="132.0.6834.159").install())
 
 # Set Chrome options (optional)
 chrome_options = webdriver.ChromeOptions()
