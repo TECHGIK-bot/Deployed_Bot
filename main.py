@@ -29,6 +29,8 @@ driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 # Open the website
 driver.get('https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201')
+# Print the page title to confirm the page loaded
+print("Page title:", driver.title)
 
 
 
