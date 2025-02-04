@@ -20,6 +20,8 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
 
 # Install ChromeDriver using webdriver_manager (handled by your script)
 # No need to manually install ChromeDriver here
+# Print Chrome version for debugging
+RUN google-chrome --version
 
 # Copy the requirements file and install Python dependencies
 ENV PATH="/usr/local/bin:${PATH}"
