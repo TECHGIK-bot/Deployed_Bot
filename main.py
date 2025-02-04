@@ -41,7 +41,6 @@ def Container():
         container_numbers = driver.find_element(By.XPATH, container_xpath)
         Numbers = container_numbers.text
 
-        # Convert to integer before appending
         try:
             Ball_numbers.append(int(Numbers))
             print(f"Container {i}, Ball-Number is: {int(Numbers)}")
@@ -91,7 +90,7 @@ def checker():
     waiting_for_container = True
 
     while True:
-        try:
+       
             if waiting_for_container:
                 # Call the Hot_Numbers function
                 Balls = Hot_Numbers()
@@ -138,7 +137,6 @@ def checker():
                     # Wait 10 seconds and prepare to call Hot_Numbers again
                     time.sleep(10)
                     waiting_for_container = True  # Switch back to update Hot_Numbers
-        except Exception as e:
-            print('an aerror occured')
+        
 
 checker()
