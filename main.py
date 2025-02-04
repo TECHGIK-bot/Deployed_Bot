@@ -35,22 +35,29 @@ print("Page title:", driver.title)
 
 
 def Container():
-    Ball_Container = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div/footer/div[2]/div[1]/div/div[1]')
+    try:
+        Ball_Container = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//html/body/div[1]/div/div/div/footer/div[2]/div[1]/div/div[1]"))
+        )
 
-    Ball_numbers = []
-    for i in range(1, 7):
-        container_xpath = f'/html/body/div[1]/div/div/div/footer/div[2]/div[1]/div/div[1]/div[{i}]/div/div'
-        container_numbers = driver.find_element(By.XPATH, container_xpath)
-        Numbers = container_numbers.text
+        Ball_numbers = []
+        for i in range(1, 7):
+            container_xpath = f'/html/body/div[1]/div/div/div/footer/div[2]/div[1]/div/div[1]/div[{i}]/div/div'
+            container_numbers = driver.find_element(By.XPATH, container_xpath)
+            Numbers = container_numbers.text
 
-        try:
-            Ball_numbers.append(int(Numbers))
-            print(f"Container {i}, Ball-Number is: {int(Numbers)}")
-            
-        except ValueError:
-            print(f"Container {i}, Ball-Number is not a valid integer: {Numbers}")
+            # Convert to integer before appending
+            try:
+                Ball_numbers.append(int(Numbers))
+                print(f"Container {i}, Ball-Number is: {int(Numbers)}")
+                
+            except ValueError:
+                print(f"Container {i}, Ball-Number is not a valid integer: {Numbers}")
 
-    return Ball_numbers
+        return Ball_numbers
+
+    except Exception as e:
+        print(f'Error: {e}')
 
 def Hot_Numbers():
     try:
@@ -108,7 +115,7 @@ def checker():
                 waiting_for_container = False  # Now wait for the timer to reach 40
             else:
                 # Wait for the timer element to be present
-                Timer = WebDriverWait(driver, 5).until(
+                Timer = WebDriverWait(driver, 15).until(
                     EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div/footer/div[2]/div[4]/div/div/div'))
                 )
 
