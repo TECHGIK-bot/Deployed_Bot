@@ -42,7 +42,22 @@ for log in logs:
     print(log)
 
 # Open the website
-driver.get('https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201')
+# Set a higher timeout for page loading
+driver.set_page_load_timeout(300)  # Wait up to 5 minutes for page to load
+
+
+driver.get("https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201")
+    
+    # Wait until an important element loads (modify selector as needed)
+WebDriverWait(driver, 60).until(
+    EC.presence_of_element_located((By.TAG_NAME, "body"))
+)
+
+print("Page loaded successfully.")
+
+
+
+
 # Print the page title to confirm the page loaded
 print("Page title:", driver.title)
 print(driver.page_source)
