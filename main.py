@@ -18,7 +18,7 @@ CHAT_ID = "6260151149"
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless=new")
 chrome_options.add_argument("--disable-http2")  # Disable HTTP/2 protocol
-
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--window-size=1920,1080")
@@ -32,7 +32,8 @@ caps['goog:loggingPrefs'] = {'performance': 'ALL'}
 
 
 # Initialize the Chrome WebDriver
-driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options, desired_capabilities=caps)
+
 
 # Capture and print browser logs
 logs = driver.get_log('performance')
