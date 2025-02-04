@@ -33,6 +33,9 @@ RUN wget -q "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834
 # After moving chromedriver to /usr/local/bin
 RUN ls -l /usr/local/bin/chromedriver && chromedriver --version
 
+# Install Python dependencies
+RUN pip install --no-cache-dir packaging
+
 # Copy the requirements file and install Python dependencies
 ENV PATH="/usr/local/bin:${PATH}"
 COPY requirements.txt .
