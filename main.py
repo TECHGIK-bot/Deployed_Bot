@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 import time
 import requests
@@ -25,16 +26,24 @@ chrome_options.add_argument("--window-size=1920,1080")
 # Specify the path to the ChromeDriver binary
 chrome_service = Service("/usr/local/bin/chromedriver")
 
+# Enable browser logging
+caps = DesiredCapabilities.CHROME
+caps['goog:loggingPrefs'] = {'performance': 'ALL'}
+
+
 # Initialize the Chrome WebDriver
 driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
-
+# Capture and print browser logs
+logs = driver.get_log('performance')
+for log in logs:
+    print(log)
 
 # Open the website
 driver.get('https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201')
 # Print the page title to confirm the page loaded
 print("Page title:", driver.title)
-print(driver.page_source) 
+ 
 
 
 def Container():
