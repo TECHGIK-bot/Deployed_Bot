@@ -11,7 +11,7 @@ import requests
 
 
 
-url = "https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201"
+url = "https://casino.bet9ja.com"
 response = requests.get(url, timeout=10)
 print(f"Status Code: {response.status_code}")
 print(f"Response Headers: {response.headers}")
@@ -55,7 +55,7 @@ for log in logs:
 driver.set_page_load_timeout(300)  # Wait up to 5 minutes for page to load
 
 
-driver.get("https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201")
+driver.get(url)
     
     # Wait until an important element loads (modify selector as needed)
 WebDriverWait(driver, 60).until(
