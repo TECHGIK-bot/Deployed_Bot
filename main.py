@@ -18,6 +18,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--window-size=1920,1080")
 
 # Specify the path to the ChromeDriver binary
 chrome_service = Service("/usr/local/bin/chromedriver")
@@ -65,7 +66,7 @@ def Hot_Numbers():
         Hot_Balls = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]"))
     )
-        print("Element found:", element.text)
+        print("Element found:", Hot_Numbers.text)
 
         First_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[1]/span').text
         Second_Hot_Ball = Hot_Balls.find_element(By.XPATH, '/html/body/div[1]/div/div/div/main/div[1]/div[2]/div[2]/div[1]/div[2]/span').text
@@ -111,6 +112,7 @@ def checker():
             if waiting_for_container:
                 # Call the Hot_Numbers function
                 Balls = Hot_Numbers()
+                print(Balls)
                 print("Hot numbers updated.")
                 waiting_for_container = False  # Now wait for the timer to reach 40
             else:
