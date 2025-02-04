@@ -69,7 +69,7 @@ print("Page loaded successfully.")
 
 # Print the page title to confirm the page loaded
 print("Page title:", driver.title)
-print(driver.page_source)
+
 
  
 
