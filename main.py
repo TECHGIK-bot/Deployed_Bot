@@ -12,21 +12,32 @@ import requests
 BOT_TOKEN = "7057194211:AAF_StFo_FwRn1AR_XOJQurXuYgh5ZvO2b4"
 CHAT_ID = "6260151149"
 
-# Define the path to chromedriver
-CHROMEDRIVER_PATH = "chromedriver" # Adjust if needed
+import os
+import subprocess
+import wget
+from selenium import webdriver
 
-# Manually specify the ChromeDriver version
-chrome_service = Service(ChromeDriverManager().install())
+# URL for the correct ChromeDriver version (Update this!)
+chromedriver_url = "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.159/linux64/chromedriver-linux64.zip"
 
-# Set Chrome options (optional)
+# Paths
+download_path = "/tmp/chromedriver.zip"
+extract_path = "/tmp/chromedriver"
+
+# Download and extract ChromeDriver
+wget.download(chromedriver_url, download_path)
+subprocess.run(["unzip", download_path, "-d", extract_path], check=True)
+subprocess.run(["chmod", "+x", f"{extract_path}/chromedriver"], check=True)
+
+# Set up Selenium
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")  # Run in headless mode
-chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-# Initialize the Chrome WebDriver
-driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+driver = webdriver.Chrome(executable_path=f"{extract_path}/chromedriver", options=chrome_options)
+
+
 
 # Open the website
 driver.get('https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201')
