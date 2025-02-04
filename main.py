@@ -9,6 +9,15 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import requests
 
+
+
+url = "https://logigames.bet9ja.com/Games/Launcher?gameId=11000&provider=0&pff=1&skin=201"
+response = requests.get(url, timeout=10)
+print(f"Status Code: {response.status_code}")
+print(f"Response Headers: {response.headers}")
+
+
+
 # Replace with your bot token and chat ID
 BOT_TOKEN = "7057194211:AAF_StFo_FwRn1AR_XOJQurXuYgh5ZvO2b4"
 CHAT_ID = "6260151149"
